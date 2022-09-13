@@ -1,7 +1,9 @@
 import pyperclip
 import tkinter as tk
+from tkinter.messagebox import showinfo, showerror
 import sys
 import os
+import base64
 
 
 def resource_path(relative_path):
@@ -13,27 +15,31 @@ def resource_path(relative_path):
 		base_path = os.path.abspath(".")
 	return os.path.join(base_path, relative_path)
 
-def gen_link():
-	pass
-
-	full_link = input("Google Drive link: ")
-
-	full_link_list = full_link.split("/")
-
-	if len(full_link_list[5]) != 33:
-		print("Invalid link!")
+def gen_link(link):
+	if "drv.ms" in link:
+		return f"""https://api.onedrive.com/v1.0/shares/u!{base64.b64encode(bytes(link, "utf-8")).decode("utf-8")}/root/content"""
+	elif "google" in link:
+		return f"""https://drive.google.com/uc?export=download&id={link.split("/")[5]}"""
 	else:
-		print("https://drive.google.com/uc?export=download&id=" + str(full_link_list[5]))
-		pyperclip.copy("https://drive.google.com/uc?export=download&id=" + str(full_link_list[5]))
+		return ""
 
 def gen_click(event):
-	pass
+	global link_entry, root
+	generated_link = gen_link(link_entry.get())
+
+	if len(generated_link) == 0:
+		showerror(title="Error!", message="Generating direct download link failed!\nCheck link and try again!", parent=root)
+	else:
+		pyperclip.copy(generated_link)
+		showinfo(title="Success!", message="Direct download link copied to clipboard!", parent=root)
 
 def paste_click(event):
-	clipboard = pyperclip.paste()
+	global link_entry
+	link_entry.delete(0, tk.END)
+	link_entry.insert(0, pyperclip.paste())
 
 def gui():
-	global link_entry
+	global link_entry, root
 
 	root = tk.Tk()
 	root.title("Direct-Link")
@@ -46,7 +52,7 @@ def gui():
 	                 foreground="white", activeforeground="white",
 	                 background="#FFC0CB", activebackground="#FFC0CB",
 	                 highlightthickness=0, borderwidth=0)
-	title.place(x=0, y=0, width=750, height=100)
+	title.place(x=0, y=7, width=750, height=100)
 
 	link_label = tk.Label(text="LINK:", font=("Gabriola", 30, "bold"),
 	                      foreground="white", activeforeground="white",
