@@ -1,1 +1,1 @@
-pyinstaller "main.py" --upx-dir "__upx_dir__" --noconsole --icon "data\\icon.ico" --onefile --add-data "data\\icon.ico;." --clean --key "__key__" --name "Direct-Link-v1.0.0"
+pyinstaller "main.py" --upx-dir "__upx_dir__" --noconsole --icon "data\\icon.ico" --onefile --add-data "data\\icon.ico;." --clean --key "__key__" --name "Direct-Link-v1.0.1"
