@@ -46,7 +46,7 @@ def gui():
 	root.geometry(f"800x190+{root.winfo_screenwidth() // 2 - 400}+{root.winfo_screenheight() // 2 - 95}")
 	root.config(background="#FFC0CB")
 	root.resizable(False, False)
-	root.iconbitmap(resource_path("data\\icon.ico"))
+	root.iconbitmap(resource_path("data/download-icon.ico"))
 
 	title = tk.Label(text="Direct-Link", font=("Gabriola", 75, "italic", "bold"),
 	                 foreground="white", activeforeground="white",
