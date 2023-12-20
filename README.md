@@ -6,7 +6,7 @@ Generate direct download link for Google Drive and Microsoft OneDrive
 
 Paste a public link to any Google Drive or Microsoft OneDrive file and get a link that automatically starts downloading when entered (without opening any webpage or asking for confirmation). 
 
-![screenshot](https://user-images.githubusercontent.com/40371578/190020479-b7a0e1f2-5377-4736-84ba-e412543422f7.png)
+![screenshot](https://github.com/amamic1803/Direct-Link/assets/40371578/3178e753-83c8-434e-adba-0acdf08b2778)
 
 ## Downloading
 Prebuilt program is available under Releases
